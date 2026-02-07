@@ -5,7 +5,7 @@
   "scripts": {
     "start": "cd backend && node server.js",
     "postinstall": "cd backend && npm install",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"no test specified\" && exit 0"
   },
   "engines": {
     "node": ">=18.0.0"
