@@ -1,6 +1,7 @@
 import React from 'react';
 import './Contact.css';
 import { usePortfolio } from '../context/PortfolioContext';
+import { Mail, Github, Linkedin, Twitter } from 'lucide-react';
 
 const Contact = () => {
     const { data } = usePortfolio();
@@ -11,22 +12,22 @@ const Contact = () => {
                 <p className="subtitle">I'm always open to collaborating on innovative projects.</p>
                 <div className="contact-grid">
                     <a href={`mailto:${data.contact.email}`} className="card contact-card">
-                        <span className="contact-icon">📧</span>
+                        <Mail className="contact-icon" size={48} />
                         <h3>Email</h3>
                         <p>{data.contact.email}</p>
                     </a>
                     <a href={`https://${data.contact.github}`} target="_blank" rel="noopener noreferrer" className="card contact-card">
-                        <span className="contact-icon">🐙</span>
+                        <Github className="contact-icon" size={48} />
                         <h3>GitHub</h3>
                         <p>View Code</p>
                     </a>
                     <a href={`https://${data.contact.linkedin}`} target="_blank" rel="noopener noreferrer" className="card contact-card">
-                        <span className="contact-icon">💼</span>
+                        <Linkedin className="contact-icon" size={48} />
                         <h3>LinkedIn</h3>
                         <p>Connect</p>
                     </a>
                     <a href={`https://twitter.com/${data.contact.twitter.replace('@', '')}`} target="_blank" rel="noopener noreferrer" className="card contact-card">
-                        <span className="contact-icon">🐦</span>
+                        <Twitter className="contact-icon" size={48} />
                         <h3>Twitter / X</h3>
                         <p>Follow Me</p>
                     </a>
