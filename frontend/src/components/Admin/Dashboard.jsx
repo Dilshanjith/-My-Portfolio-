@@ -34,7 +34,8 @@ const DashboardContent = () => {
         name: data?.name || '',
         role: data?.role || '',
         intro: data?.intro || '',
-        image: data?.image || ''
+        image: data?.image || '',
+        contact: data?.contact || { email: '', github: '', linkedin: '', twitter: '' }
     });
     const [uploading, setUploading] = useState(false);
 
@@ -151,6 +152,30 @@ const DashboardContent = () => {
                         onChange={e => setProfileForm({ ...profileForm, intro: e.target.value })}
                         placeholder="Introduction"
                     />
+
+                    <div className="contact-form-group">
+                        <h4>Contact Details</h4>
+                        <input
+                            value={profileForm.contact?.email || ''}
+                            onChange={e => setProfileForm({ ...profileForm, contact: { ...profileForm.contact, email: e.target.value } })}
+                            placeholder="Email"
+                        />
+                        <input
+                            value={profileForm.contact?.github || ''}
+                            onChange={e => setProfileForm({ ...profileForm, contact: { ...profileForm.contact, github: e.target.value } })}
+                            placeholder="GitHub (e.g. github.com/username)"
+                        />
+                        <input
+                            value={profileForm.contact?.linkedin || ''}
+                            onChange={e => setProfileForm({ ...profileForm, contact: { ...profileForm.contact, linkedin: e.target.value } })}
+                            placeholder="LinkedIn (e.g. linkedin.com/in/username)"
+                        />
+                        <input
+                            value={profileForm.contact?.twitter || ''}
+                            onChange={e => setProfileForm({ ...profileForm, contact: { ...profileForm.contact, twitter: e.target.value } })}
+                            placeholder="Twitter (e.g. @username)"
+                        />
+                    </div>
                     <div className="image-input-group">
                         <label className="file-upload-label">
                             <span className="btn-upload">Choose Photo</span>
