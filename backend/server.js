@@ -15,29 +15,37 @@ app.use(cors(corsOptions));
 const path = require('path');
 const multer = require('multer');
 
-// Configure Multer for file uploads
-const storage = multer.diskStorage({
-    destination: (req, file, cb) => {
-        cb(null, 'uploads/');
-    },
-    filename: (req, file, cb) => {
-        cb(null, Date.now() + path.extname(file.originalname));
+const cloudinary = require('cloudinary').v2;
+const { CloudinaryStorage } = require('multer-storage-cloudinary');
+
+// Configure Cloudinary
+cloudinary.config({
+    cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
+    api_key: process.env.CLOUDINARY_API_KEY,
+    api_secret: process.env.CLOUDINARY_API_SECRET,
+});
+
+// Configure Multer Storage for Cloudinary
+const storage = new CloudinaryStorage({
+    cloudinary: cloudinary,
+    params: {
+        folder: 'portfolio_uploads',
+        allowed_formats: ['jpg', 'png', 'jpeg', 'webp'],
     },
 });
 
 const upload = multer({ storage });
 
-// Serve static files from the uploads directory
-app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
+// Serve static files from the uploads directory (Optional: removed since using Cloudinary)
+// app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
 
 // Upload endpoint
 app.post('/api/upload', upload.single('image'), (req, res) => {
     if (!req.file) {
         return res.status(400).json({ message: 'No file uploaded' });
     }
-    // Return the URL of the uploaded file
-    const fileUrl = `${req.protocol}://${req.get('host')}/uploads/${req.file.filename}`;
-    res.json({ imageUrl: fileUrl });
+    // Return the Cloudinary URL
+    res.json({ imageUrl: req.file.path });
 });
 
 // Initial Data Seed
