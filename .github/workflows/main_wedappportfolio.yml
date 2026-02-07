@@ -26,6 +26,9 @@ jobs:
       - name: npm install, build, and test
         run: |
           npm install
+          # Explicitly install backend dependencies to ensure node_modules is populated
+          cd backend && npm install && cd ..
+          # No build script needed to expose for this backend setup
           npm run build --if-present
           npm run test --if-present
 
@@ -62,4 +65,3 @@ jobs:
           app-name: 'wedappPortfolio'
           slot-name: 'Production'
           package: .
-          
