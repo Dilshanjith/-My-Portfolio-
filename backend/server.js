@@ -8,7 +8,6 @@ const app = express();
 app.use(express.json());
 const corsOptions = {
     origin: '*',
-    credentials: true,
     optionSuccessStatus: 200,
 }
 app.use(cors(corsOptions));
@@ -37,15 +36,20 @@ const storage = new CloudinaryStorage({
 const upload = multer({ storage });
 
 // Serve static files from the uploads directory (Optional: removed since using Cloudinary)
-// app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
+app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
 
 // Upload endpoint
-app.post('/api/upload', upload.single('image'), (req, res) => {
-    if (!req.file) {
-        return res.status(400).json({ message: 'No file uploaded' });
-    }
-    // Return the Cloudinary URL
-    res.json({ imageUrl: req.file.path });
+app.post('/api/upload', (req, res) => {
+    upload.single('image')(req, res, (err) => {
+        if (err) {
+            console.error('Upload Error:', err);
+            return res.status(500).json({ message: 'Upload failed', error: err.message });
+        }
+        if (!req.file) {
+            return res.status(400).json({ message: 'No file uploaded' });
+        }
+        res.json({ imageUrl: req.file.path });
+    });
 });
 
 // Initial Data Seed

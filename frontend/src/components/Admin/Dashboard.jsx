@@ -58,13 +58,18 @@ const DashboardContent = () => {
                 method: 'POST',
                 body: formData,
             });
+            if (!response.ok) {
+                const errorData = await response.json();
+                throw new Error(errorData.message || errorData.error || "Upload failed");
+            }
             const result = await response.json();
             if (result.imageUrl) {
                 setProfileForm(prev => ({ ...prev, image: result.imageUrl }));
+                alert("Image uploaded successfully!");
             }
         } catch (error) {
             console.error("Upload failed", error);
-            alert("Upload failed");
+            alert(`Upload failed: ${error.message}`);
         } finally {
             setUploading(false);
         }

@@ -22,7 +22,13 @@ const Hero = () => {
                 </div>
                 <div className="hero-visual animate-fade-in delay-2">
                     <div className="profile-wrapper">
-                        <img src={data.image} alt={data.name} className="profile-img" />
+                        <img
+                            src={data.image?.startsWith('uploads/')
+                                ? `${(import.meta.env.VITE_API_URL || 'http://localhost:5000/api').replace('/api', '')}/${data.image}`
+                                : data.image}
+                            alt={data.name}
+                            className="profile-img"
+                        />
                         <div className="circle-pulse"></div>
                     </div>
                 </div>
