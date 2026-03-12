@@ -1,10 +1,5 @@
 # 🌟 Dynamic Personal Portfolio with Admin Dashboard
 
-[![Maintenance](https://img.shields.io/badge/Maintained%3F-yes-green.svg)](https://GitHub.com/Dilshanjith/-My-Portfolio-/graphs/commit-activity)
-[![MERN Stack](https://img.shields.io/badge/Stack-MERN-blue?style=flat-square)](https://www.mongodb.com/mern-stack)
-[![Vite](https://img.shields.io/badge/Vite-7.x-yellow?style=flat-square&logo=vite)](https://vitejs.dev/)
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
-
 A sophisticated, full-stack MERN (MongoDB, Express, React, Node.js) portfolio application featuring a secure Admin Dashboard for real-time content management. This project is designed to bridge the gap between a static showcase and a dynamic application, providing full control over projects, skills, and profile data without touching a line of code.
 
 ---
@@ -137,4 +132,4 @@ To manage your portfolio content:
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
 ---
-*Created with ❤️ by [Dilshanjith](https://github.com/Dilshanjith)*
+
