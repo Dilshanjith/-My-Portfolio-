@@ -103,7 +103,7 @@ export const PortfolioProvider = ({ children }) => {
         saveToBackend(profileData);
     }
 
-    if (loading) return <div style={{ display: 'flex', justifyContent: 'center', marginTop: '50px' }}>Loading...</div>;
+    if (loading) return <div style={{ display: 'flex', justifyContent: 'center', marginTop: '50px' }}></div>;
     if (error) return <div style={{ display: 'flex', justifyContent: 'center', marginTop: '50px' }}>Error: {error}. Make sure Backend is running.</div>;
 
     return (
